@@ -44,7 +44,11 @@ const loginUser = async (req, res) => {
             id: checkUser._id, role: checkUser.role, email: checkUser.email, userName: checkUser.userName
         }, 'CLIENT_SECRET_KEY', { expiresIn: '60m' })
         res.cookie('token', token, {
-            httpOnly: true,
+            httpOnly: true,           // Prevents XSS attacks
+            secure: false,            // Set to true in production with HTTPS
+            sameSite: 'lax',          // Important for cross-origin requests
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            path: '/'                 // Available across entire domain
         }).json({
             success: true,
             message: 'Logged In Successfully',
