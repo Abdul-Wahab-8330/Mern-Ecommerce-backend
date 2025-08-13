@@ -60,6 +60,11 @@
   background-repeat: no-repeat;
 }
 
+button{
+  background-color: blue;
+  color: white;
+  border: none;
+}
 
 button:hover {
   border-color: #eb8808;

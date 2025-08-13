@@ -51,7 +51,7 @@ function MenuItems({ closeSheet }) {
                         key={item.id}
                         onClick={() => handleNavigate(item)}
                         className={`text-sm font-medium tracking-wider cursor-pointer relative transition duration-200 ${isActive
-                                ? 'text-orange-600 after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-[2px] after:bg-orange-600'
+                                ? 'text-blue-600 after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-[2px] after:bg-blue-600'
                                 : 'text-gray-700'
                             }`}
                     >
@@ -92,9 +92,9 @@ function HeaderRightContent() {
             </div>
         </Link>
         <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
-            <Button onClick={() => setOpenCartSheet(true)} variant='outline' size='icon' className='rounded-full  relative '>
+            <Button style={{backgroundColor:'gray'}} onClick={() => setOpenCartSheet(true)} variant='outline' size='icon' className='rounded-full  relative '>
                 <ShoppingCart className="w-7 h-7 font-bold" />
-                <Badge className='absolute -top-3 -right-3 rounded-full bg-orange-600 '>
+                <Badge className='absolute -top-3 -right-3 rounded-full bg-blue-600 '>
                     {
                         cartItems.items && cartItems.items.length > 0 ?
                             cartItems.items.length

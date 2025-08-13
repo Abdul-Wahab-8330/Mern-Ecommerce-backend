@@ -55,7 +55,7 @@ const App = () => {
             <AdminLayout />
           </CheckAuth>
         }>
-          <Route path='dashboard' element={<AdminDashboard />} />
+          <Route path='dashboard' element={<AdminProducts />} />
           <Route path='products' element={<AdminProducts />} />
           <Route path='orders' element={<AdminOrders />} />
           <Route path='features' element={<AdminFeatures />} />
