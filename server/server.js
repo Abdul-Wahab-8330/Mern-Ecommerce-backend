@@ -12,7 +12,6 @@ const shopCartRouter = require('./routes/shop/cart-routes')
 const shopAddressRouter = require('./routes/shop/address-routes')
 const shopOrderRouter = require('./routes/shop/order-routes')
 const shopSearchRouter = require('./routes/shop/search-routes')
-const shopSearchRouter = require('./routes/shop/search-routes')
 
 
 
