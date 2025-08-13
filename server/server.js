@@ -22,7 +22,10 @@ mongoose.connect('mongodb+srv://abdulwahabeeee5:abdulwahabatlas@cluster0.mujzo.m
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:5173', // Your frontend URL
+  credentials: true
+}));
 
 app.use(cookieParser())
 app.use(express.json())
@@ -34,8 +37,10 @@ app.use('/api/shop/order', shopOrderRouter)
 app.use('/api/admin/products', adminProductsRouter)
 app.use('/api/admin/orders', AdminOrderRouter)
 app.use('/api/shop/search', shopSearchRouter)
+app.get("/", (req, res) => {
+  res.send("Backend is working ✅");
+});
 
 
 
-
-app.listen(PORT, ()=>console.log(`Server is now running on port ${PORT}`))
+app.listen(PORT,'0.0.0.0', ()=>console.log(`Server is now running on port ${PORT}`))

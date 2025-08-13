@@ -43,7 +43,9 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({
             id: checkUser._id, role: checkUser.role, email: checkUser.email, userName: checkUser.userName
         }, 'CLIENT_SECRET_KEY', { expiresIn: '60m' })
-        res.cookie('token', token, { httpOnly: true, secure: false }).json({
+        res.cookie('token', token, {
+            httpOnly: true,
+        }).json({
             success: true,
             message: 'Logged In Successfully',
             user: {
@@ -52,7 +54,7 @@ const loginUser = async (req, res) => {
                 id: checkUser._id,
                 userName: checkUser.userName
             }
-        })
+        });
     } catch (e) {
         console.log(e);
         res.status(500).json({
@@ -65,10 +67,13 @@ const loginUser = async (req, res) => {
 //logout
 
 const logoutUser = (req, res) => {
-    res.clearCookie('token').json({
+    res.clearCookie('token', {
+        httpOnly: true,
+
+    }).json({
         success: true,
         message: 'Logged Out Successfully'
-    })
+    });
 }
 
 
@@ -81,16 +86,16 @@ const authMiddleware = async (req, res, next) => {
             success: false,
             message: 'Unauthorized User!'
         })
-        try {
-            const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY');
-            req.user = decoded;
-            next();
-        } catch (error) {
-            res.status(401).json({
+    try {
+        const decoded = jwt.verify(token, 'CLIENT_SECRET_KEY');
+        req.user = decoded;
+        next();
+    } catch (error) {
+        res.status(401).json({
             success: false,
             message: 'Unauthorized User!'
         })
-        }
+    }
 }
 
 module.exports = { registerUser, loginUser, logoutUser, authMiddleware }
