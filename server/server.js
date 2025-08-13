@@ -22,10 +22,7 @@ mongoose.connect('mongodb+srv://abdulwahabeeee5:abdulwahabatlas@cluster0.mujzo.m
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend URL
-  credentials: true
-}));
+app.use(cors());
 
 app.use(cookieParser())
 app.use(express.json())
