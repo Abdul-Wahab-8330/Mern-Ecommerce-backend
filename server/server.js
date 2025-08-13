@@ -16,13 +16,19 @@ const shopSearchRouter = require('./routes/shop/search-routes')
 
 
 mongoose.connect('mongodb+srv://abdulwahabeeee5:abdulwahabatlas@cluster0.mujzo.mongodb.net/')
-.then(()=>console.log('mongoDB connected'))
-.catch((error)=>console.log(error))
+  .then(() => console.log('mongoDB connected'))
+  .catch((error) => console.log(error))
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',  
+    'https://mern-ecommerce-frontend-one-sigma.vercel.app',    // Create React App
+  ],
+  credentials: true
+}));
 
 app.use(cookieParser())
 app.use(express.json())
@@ -40,4 +46,4 @@ app.get("/", (req, res) => {
 
 
 
-app.listen(PORT,'0.0.0.0', ()=>console.log(`Server is now running on port ${PORT}`))
+app.listen(PORT, '0.0.0.0', () => console.log(`Server is now running on port ${PORT}`))
